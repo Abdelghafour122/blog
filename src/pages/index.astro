@@ -1,8 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Card from "../components/Card.astro";
+import Navbar from "@components/Navbar.astro";
 ---
 
 <BaseLayout title="My first astro blog">
-  <main></main>
+  <main class="container mx-auto my-0">
+    <Navbar />
+  </main>
 </BaseLayout>
