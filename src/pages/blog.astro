@@ -1,7 +1,21 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+const blogPosts = await getCollection("posts");
 ---
 
 <BaseLayout title="Blog">
   <p>blog page</p>
+  <ul>
+    {
+      blogPosts.map((post) => {
+        return (
+          <li>
+            <h1>{post.data}</h1>
+          </li>
+        );
+      })
+    }
+  </ul>
+  <pre>{JSON.stringify(blogPosts, null, 2)}</pre>
 </BaseLayout>

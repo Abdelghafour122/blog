@@ -1,0 +1,23 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+export const getStaticPaths = async () => {
+  const blogPosts = await getCollection("posts");
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+};
+
+type Props = CollectionEntry<"posts">;
+const post = Astro.props;
+
+const { Content, headings, remarkPluginFrontmatter } = await post.render();
+console.log(headings);
+console.log(remarkPluginFrontmatter);
+---
+
+<BaseLayout title={"some post"}>
+  <Content />
+</BaseLayout>
